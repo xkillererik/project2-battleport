@@ -10,7 +10,7 @@ Current features:
 Class overview:
   - Game (class).
       Used for running the game.
-      Has the game-loop and all other necissary things to run a game.
+      Has the game-loop and all other necessary things to run a game.
   - Animations (class).
       Used for generating a sequence of pictures in a loop.
   - Button (class).
