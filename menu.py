@@ -24,19 +24,20 @@ class Animation:
 class Menu:
     def __init__(self):
         self.X = game.Width / 4
-        self.Y = game.Height / 10
+        self.Y = game.Height / 10 + 100
         self.Width = game.Width / 2
+        self.Head = "BATTLEPORT:"
+        self.Subhead = "Rotterdam edition"
 
         self.Button_height = 50
-        self.Button_color = (100,120,200)
-        self.Button_color_hover = (150, 170, 250)
-        self.Button_color_border = (100,110,150)
+        self.Button_color = (0,0,128)
+        self.Button_color_hover = (0, 0, 180)
 
         self.Buttons = [\
-        Button(self.X, self.Y, game.Width * 0.75, self.Y + self.Button_height, self.Button_color, self.Button_color_hover, self.Button_color_border, self.Start, self.Text_draw, "Start game"),\
-        Button(self.X, self.Y + self.Button_height * 1.5, game.Width * 0.75, self.Y + self.Button_height * 2.5, self.Button_color, self.Button_color_hover, self.Button_color_border, self.Load, self.Text_draw, "Load game"),\
-        Button(self.X, self.Y + self.Button_height * 3, game.Width * 0.75, self.Y + self.Button_height * 4, self.Button_color, self.Button_color_hover, self.Button_color_border, self.Instructions, self.Text_draw, "Instructions"),\
-        Button(self.X, self.Y + self.Button_height * 4.5, game.Width * 0.75, self.Y + self.Button_height * 5.5, self.Button_color, self.Button_color_hover, self.Button_color_border, self.Exit, self.Text_draw, "Exit")]
+        Button(self.X, self.Y, game.Width*0.75, self.Y + self.Button_height, self.Button_color, self.Button_color_hover, self.Start, self.Text_draw, "Start game"),\
+        Button(self.X, self.Y+self.Button_height*1.5, game.Width*0.75, self.Y+self.Button_height*2.5, self.Button_color, self.Button_color_hover, self.Load, self.Text_draw, "Load game"),\
+        Button(self.X, self.Y+self.Button_height*3, game.Width*0.75, self.Y+self.Button_height*4, self.Button_color, self.Button_color_hover, self.Instructions, self.Text_draw, "Instructions"),\
+        Button(self.X, self.Y+self.Button_height*4.5, game.Width*0.75, self.Y+self.Button_height*5.5, self.Button_color, self.Button_color_hover, self.Exit, self.Text_draw, "Exit")]
 
     def Start(self): game.Level = "start"
     def Load(self): game.Level = "load"
@@ -49,18 +50,19 @@ class Menu:
         game.Display.blit(self.screen_text, [x,y])
 
     def Draw(self):
+        self.Text_draw(self.Head, (20,20,20), 74, self.X, self.Y-125)
+        self.Text_draw(self.Subhead, (40,40,40), 35, self.X + 150, self.Y - 75)
         for button in self.Buttons:
             button.Draw()
 
 class Button:
-    def __init__(self, x, y, x2, y2, color, colorhover, colorborder, function, textfunction=None, text=None, textsize=40, textcolor=(255,255,255)):
+    def __init__(self, x, y, x2, y2, color, colorhover, function, textfunction=None, text=None, textsize=40, textcolor=(255,255,255)):
         self.X = x
         self.Y = y
         self.X2 = x2
         self.Y2 = y2
         self.Color = color
         self.Color_hover = colorhover
-        self.Color_border = colorborder
         self.Click_function = function
 
         self.Text = text
